@@ -22,6 +22,17 @@ jobs:
       - name: Build database
         run: bash scripts/build-db.sh data/acronymizer.sql acronymizer.db
 
+      - name: Validate database against the previous release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p previous
+          if gh release download --pattern acronymizer.db --dir previous 2>/dev/null; then
+            bash scripts/validate-db.sh acronymizer.db previous/acronymizer.db
+          else
+            bash scripts/validate-db.sh acronymizer.db
+          fi
+
       - name: Compute tag
         run: |
           base="$(date -u +%Y%m%d)"
