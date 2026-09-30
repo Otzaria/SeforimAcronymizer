@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'data/acronymizer.sql'
+      - 'scripts/validate-db.sh'
 
 permissions:
   contents: read
@@ -64,3 +65,12 @@ jobs:
             } else {
               await github.rest.issues.createComment({ owner, repo, issue_number, body });
             }
+
+      # After the comment, so a failing PR still shows its diff.
+      - name: Validate proposed DB
+        run: |
+          if [ "$has_old" = "true" ]; then
+            bash scripts/validate-db.sh new.db old/acronymizer.db
+          else
+            bash scripts/validate-db.sh new.db
+          fi
