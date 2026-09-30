@@ -7003,7 +7003,6 @@ INSERT INTO Books(id,title) VALUES(6970,'הזהר המתורגם - תקוני ה
 INSERT INTO Acronyms(id,acronym) VALUES(1,'בראשית');
 INSERT INTO Acronyms(id,acronym) VALUES(2,'ספר בראשית');
 INSERT INTO Acronyms(id,acronym) VALUES(3,'בר׳');
-INSERT INTO Acronyms(id,acronym) VALUES(4,'בר''');
 INSERT INTO Acronyms(id,acronym) VALUES(5,'בר"ר');
 INSERT INTO Acronyms(id,acronym) VALUES(6,'בר״ר');
 INSERT INTO Acronyms(id,acronym) VALUES(7,'בראשית רבה');
@@ -61545,10 +61544,10 @@ INSERT INTO Acronyms(id,acronym) VALUES(59262,'הזוהר המתורגם - תי�
 INSERT INTO Acronyms(id,acronym) VALUES(59263,'תורי"ד קידושין');
 INSERT INTO Acronyms(id,acronym) VALUES(59264,'תוריד גיטין');
 INSERT INTO Acronyms(id,acronym) VALUES(59265,'נפה"ח');
+INSERT INTO Acronyms(id,acronym) VALUES(59266,'פמ"א ג');
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(1,1,1);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(2,1,2);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(3,1,3);
-INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(4,1,4);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(5,2,5);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(6,2,6);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(7,2,7);
@@ -121452,4 +121451,5 @@ INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(60484,6970,59262);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(60485,6694,59263);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(60486,6677,59264);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(60487,4425,59265);
+INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(60488,4855,59266);
 COMMIT;
