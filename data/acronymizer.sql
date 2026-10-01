@@ -11800,7 +11800,6 @@ INSERT INTO Acronyms(id,acronym) VALUES(4820,'הערות על שערי תורת 
 INSERT INTO Acronyms(id,acronym) VALUES(4821,'הערות על שערי תורת בבל על אבות דרבי נתן');
 INSERT INTO Acronyms(id,acronym) VALUES(4822,'תנחומא ויגש');
 INSERT INTO Acronyms(id,acronym) VALUES(4823,'תנחומא-ויגש');
-INSERT INTO Acronyms(id,acronym) VALUES(4824,'מדרש תנחומא ויגש');
 INSERT INTO Acronyms(id,acronym) VALUES(4825,'מדרש תנחומא-ויגש');
 INSERT INTO Acronyms(id,acronym) VALUES(4826,'הערות על שערי תורת בבל על בבא בתרא');
 INSERT INTO Acronyms(id,acronym) VALUES(4827,'הערות על שערי תורת בבל על בבא מציעא');
@@ -66402,7 +66401,6 @@ INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(4909,1190,4820);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(4910,1191,4821);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(4911,1192,4822);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(4912,1192,4823);
-INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(4913,1192,4824);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(4914,1192,4825);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(4915,1193,4826);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(4916,1194,4827);
