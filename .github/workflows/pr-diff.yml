@@ -1,10 +1,13 @@
 name: PR Database Diff
 
+# בלי סינון paths: זו בדיקת חובה במיזוג, ובדיקה שלא רצה על PR חוסמת אותו לתמיד
 on:
   pull_request:
-    paths:
-      - 'data/acronymizer.sql'
-      - 'scripts/validate-db.sh'
+
+# האתר בונה מחדש את ה-PR-ים שלו אחרי כל מיזוג; ריצה על קומיט שכבר הוחלף בטלה, ומבטלים אותה
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 permissions:
   contents: read

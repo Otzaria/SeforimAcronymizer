@@ -4,6 +4,11 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+# האתר בונה מחדש את ה-PR-ים שלו אחרי כל מיזוג; ריצה על קומיט שכבר הוחלף בטלה, ומבטלים אותה
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   dco-check:
     name: Check DCO sign-off
