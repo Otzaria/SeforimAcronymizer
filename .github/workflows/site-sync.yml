@@ -1,0 +1,31 @@
+name: Site sync
+
+# אחרי כל מיזוג ל-master, האתר בונה מחדש מעל master את ה-PR-ים הפתוחים שלו, כדי שלא יתנגשו.
+# אין כאן סוד: האתר מאמת את אסימון ה-OIDC של GitHub ובודק שהוא הונפק לריפו הזה.
+on:
+  push:
+    branches: [master]
+  pull_request:
+    types: [closed]
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: site-sync
+  cancel-in-progress: false
+
+jobs:
+  notify:
+    # PR שמוזג מגיע גם כ-push ל-master; כאן רק PR של האתר שנסגר בלי מיזוג
+    if: github.event_name != 'pull_request' || (!github.event.pull_request.merged && startsWith(github.head_ref, 'site/acronyms-'))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify the site
+        run: |
+          token=$(curl -fsS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=otzaria-acronyms-sync" | jq -r .value)
+          curl -fsS --retry 3 --retry-delay 30 --retry-all-errors -X POST \
+            -H "Authorization: Bearer $token" https://otzaria.org/api/cron/acronyms-sync
