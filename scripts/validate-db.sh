@@ -63,10 +63,32 @@ if [ "$failures" -eq 0 ]; then
     distinct_aliases="SELECT COUNT(*) FROM (SELECT DISTINCT ba.book_id, $(norm a.acronym) AS k
       FROM BookAcronyms ba JOIN Acronyms a ON a.id = ba.acronym_id JOIN Books b ON b.id = ba.book_id
       WHERE $(norm a.acronym) <> $(norm b.title));"
-    for check in "Books|SELECT COUNT(*) FROM Books;" "BookAcronyms (distinct normalized)|$distinct_aliases"; do
-      label=${check%%|*}; sql=${check#*|}
-      before=$(q "$OLD" "$sql")
-      after=$(q "$NEW" "$sql")
+    # Books moved from the previous release to data/unmatched.tsv (no matching library title)
+    # are parked, not lost, so they count as still present.
+    UNMATCHED="${UNMATCHED:-$(dirname "$0")/../data/unmatched.tsv}"
+    moved() { # SQL over table u(title, alias) restricted to titles that left the release now
+      [ -f "$UNMATCHED" ] || { echo 0; return; }
+      # not .import: in tab mode a leading " is CSV quoting, and some aliases start with one
+      local rows
+      rows=$(sed '1d' "$UNMATCHED" | tr -d '\r' | sed "s/'/''/g; s/^/INSERT INTO u VALUES('/; s/\t/','/; s/\$/');/")
+      sqlite3 -noheader -batch :memory: <<SQL | tr -d '\r'
+CREATE TABLE u(title TEXT, alias TEXT);
+$rows
+ATTACH '$OLD' AS old; ATTACH '$NEW' AS new;
+CREATE TEMP VIEW m AS SELECT * FROM u WHERE title IN (SELECT title FROM old.Books)
+  AND title NOT IN (SELECT title FROM new.Books);
+$1
+SQL
+    }
+    moved_books="SELECT COUNT(DISTINCT title) FROM m;"
+    moved_aliases="SELECT COUNT(*) FROM (SELECT DISTINCT title, $(norm alias) FROM m WHERE $(norm alias) <> $(norm title));"
+    labels=("Books" "BookAcronyms (distinct normalized)")
+    counts=("SELECT COUNT(*) FROM Books;" "$distinct_aliases")
+    moves=("$moved_books" "$moved_aliases")
+    for i in 0 1; do
+      label=${labels[$i]}
+      before=$(q "$OLD" "${counts[$i]}")
+      after=$(( $(q "$NEW" "${counts[$i]}") + $(moved "${moves[$i]}") ))
       if [ "$before" -gt 0 ] && [ $(( (before - after) * 100 )) -gt $(( before * MAX_DROP_PERCENT )) ]; then
         fail "$label dropped from $before to $after (more than ${MAX_DROP_PERCENT}%)"
       fi

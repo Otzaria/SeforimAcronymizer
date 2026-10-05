@@ -83,6 +83,12 @@ ORDER BY b.id;
 
 This view allows using old queries without modification.
 
+## Unmatched titles (`data/unmatched.tsv`)
+
+SeforimLibrary copies a book's acronyms only when its title here equals the library title (after removing quotes or punctuation). Books with no matching title in the library are kept in `data/unmatched.tsv` (`title<TAB>alias`, one row per acronym) instead of `data/acronymizer.sql`, so they are not built into the released database.
+
+When such a book enters the library, move its rows back into the dump under the library's exact title. `scripts/validate-db.sh` counts books that moved from the previous release into this file as still present, so parking them is not a regression.
+
 ## Relational Structure Benefits
 
 ### 1. **No Duplication**
