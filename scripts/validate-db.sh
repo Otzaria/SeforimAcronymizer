@@ -51,13 +51,26 @@ if [ "$failures" -eq 0 ]; then
 
   # --- regression against the previous release ---
   if [ -n "$OLD" ]; then
-    for table in Books BookAcronyms; do
-      before=$(q "$OLD" "SELECT COUNT(*) FROM $table;")
-      after=$(q "$NEW" "SELECT COUNT(*) FROM $table;")
+    # BookAcronyms is measured in distinct aliases as the app matches them, so removing
+    # variants that differ only in quotes or punctuation (or repeat the title) is not a drop.
+    norm() { # SQL expression: column -> key close to the app's normalizeForFindRefMatch
+      local e="lower($1)"
+      for ch in '"' "''" '״' '׳' '“' '”' '‘' '’'; do e="replace($e, '$ch', '')"; done
+      for ch in '-' '־' ',' '.' ':' ';' '(' ')' '|'; do e="replace($e, '$ch', ' ')"; done
+      for _ in 1 2 3; do e="replace($e, '  ', ' ')"; done
+      echo "trim($e)"
+    }
+    distinct_aliases="SELECT COUNT(*) FROM (SELECT DISTINCT ba.book_id, $(norm a.acronym) AS k
+      FROM BookAcronyms ba JOIN Acronyms a ON a.id = ba.acronym_id JOIN Books b ON b.id = ba.book_id
+      WHERE $(norm a.acronym) <> $(norm b.title));"
+    for check in "Books|SELECT COUNT(*) FROM Books;" "BookAcronyms (distinct normalized)|$distinct_aliases"; do
+      label=${check%%|*}; sql=${check#*|}
+      before=$(q "$OLD" "$sql")
+      after=$(q "$NEW" "$sql")
       if [ "$before" -gt 0 ] && [ $(( (before - after) * 100 )) -gt $(( before * MAX_DROP_PERCENT )) ]; then
-        fail "$table dropped from $before to $after rows (more than ${MAX_DROP_PERCENT}%)"
+        fail "$label dropped from $before to $after (more than ${MAX_DROP_PERCENT}%)"
       fi
-      echo "$table: $before -> $after"
+      echo "$label: $before -> $after"
     done
   fi
 fi
