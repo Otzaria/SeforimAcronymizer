@@ -86551,4 +86551,5 @@ INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(62320,44,60983);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(62321,55,60984);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(62322,55,60985);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(62323,55,60986);
+INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(62324,26,569);
 COMMIT;
