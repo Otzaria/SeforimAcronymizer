@@ -64654,7 +64654,6 @@ INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(37104,33,35970);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(37105,33,35971);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(37106,33,35972);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(37107,36,35973);
-INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(37110,41,35976);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(37111,38,35977);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(37113,38,35979);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(37114,64,35980);
