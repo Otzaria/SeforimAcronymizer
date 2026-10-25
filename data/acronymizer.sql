@@ -86958,4 +86958,7 @@ INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(62527,1280,61182);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(62528,1281,61183);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(62529,1281,61184);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(62530,1281,61185);
+INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(62531,86,26193);
+INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(62532,86,26195);
+INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(62533,86,26197);
 COMMIT;
