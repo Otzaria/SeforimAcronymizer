@@ -1,12 +1,13 @@
 name: Site sync
 
 # אחרי כל מיזוג ל-master, האתר בונה מחדש מעל master את ה-PR-ים הפתוחים שלו, כדי שלא יתנגשו.
+# גם הסרת סימון משינוי בגוף PR של האתר בונה אותו מחדש, בלי השינוי הזה.
 # אין כאן סוד: האתר מאמת את אסימון ה-OIDC של GitHub ובודק שהוא הונפק לריפו הזה.
 on:
   push:
     branches: [master]
   pull_request:
-    types: [closed]
+    types: [closed, edited]
   workflow_dispatch:
 
 permissions:
@@ -19,8 +20,12 @@ concurrency:
 
 jobs:
   notify:
-    # PR שמוזג מגיע גם כ-push ל-master; כאן רק PR של האתר שנסגר בלי מיזוג
-    if: github.event_name != 'pull_request' || (!github.event.pull_request.merged && startsWith(github.head_ref, 'site/acronyms-'))
+    # PR שמוזג מגיע גם כ-push ל-master; כאן רק PR של האתר שנסגר בלי מיזוג, או שגופו נערך בידי אדם
+    # (עדכון הגוף בידי האתר עצמו, אחרי בנייה מחדש, אינו מפעיל סבב נוסף)
+    if: >-
+      github.event_name != 'pull_request' || (startsWith(github.head_ref, 'site/acronyms-') && (
+        (github.event.action == 'closed' && !github.event.pull_request.merged) ||
+        (github.event.action == 'edited' && github.event.changes.body && github.event.sender.login != github.event.pull_request.user.login)))
     runs-on: ubuntu-latest
     steps:
       - name: Notify the site
