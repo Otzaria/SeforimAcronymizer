@@ -44710,6 +44710,8 @@ INSERT INTO Acronyms(id,acronym) VALUES(61185,'תוספתא על מס'' ידים
 INSERT INTO Acronyms(id,acronym) VALUES(61186,'נביא מלאכי');
 INSERT INTO Acronyms(id,acronym) VALUES(61187,'זוה"ח');
 INSERT INTO Acronyms(id,acronym) VALUES(61188,'משניות ברכות');
+INSERT INTO Acronyms(id,acronym) VALUES(61189,'תוספתא שקל''');
+INSERT INTO Acronyms(id,acronym) VALUES(61190,'תוספתא ליברמן שקלים');
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(2,1,2);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(5,2,5);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(8,2,8);
@@ -86964,4 +86966,6 @@ INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(62530,1281,61185);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(62531,172,61186);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(62532,20,61187);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(62533,5,61188);
+INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(62534,135,61189);
+INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(62535,135,61190);
 COMMIT;
