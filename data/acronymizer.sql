@@ -19212,7 +19212,6 @@ INSERT INTO Acronyms(id,acronym) VALUES(27468,'משובב נתיבות חו״מ'
 INSERT INTO Acronyms(id,acronym) VALUES(27470,'משובב נתיבות ח"מ');
 INSERT INTO Acronyms(id,acronym) VALUES(27476,'מ"ב');
 INSERT INTO Acronyms(id,acronym) VALUES(27477,'ברשית');
-INSERT INTO Acronyms(id,acronym) VALUES(27478,'בר״ש');
 INSERT INTO Acronyms(id,acronym) VALUES(27482,'רמב"ם על מסירת תורה שבעל פה');
 INSERT INTO Acronyms(id,acronym) VALUES(27486,'שו"ע');
 INSERT INTO Acronyms(id,acronym) VALUES(27487,'או"ח');
@@ -57458,7 +57457,6 @@ INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(28591,6873,27458);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(28593,6873,27460);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(28594,6873,27461);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(28611,1,27477);
-INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(28612,1,27478);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(28616,6,27482);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(28620,8,27486);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(28621,8,27487);
