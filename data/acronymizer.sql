@@ -7351,6 +7351,9 @@ INSERT INTO Books(id,title) VALUES(7639,'תוספות הריד על ראש הש�
 INSERT INTO Books(id,title) VALUES(7640,'תוספות הריד על שבת');
 INSERT INTO Books(id,title) VALUES(7641,'תוספות הריד על תענית');
 INSERT INTO Books(id,title) VALUES(7642,'תפסיר הרסג');
+INSERT INTO Books(id,title) VALUES(7643,'אהל משה (על השס)');
+INSERT INTO Books(id,title) VALUES(7644,'אהל משה (על משנה תורה)');
+INSERT INTO Books(id,title) VALUES(7645,'שות אהל משה (קרינס)');
 INSERT INTO Acronyms(id,acronym) VALUES(2,'ספר בראשית');
 INSERT INTO Acronyms(id,acronym) VALUES(5,'בר"ר');
 INSERT INTO Acronyms(id,acronym) VALUES(8,'בראשית רבא');
@@ -45060,6 +45063,9 @@ INSERT INTO Acronyms(id,acronym) VALUES(61393,'פרוש המשניות להרמ�
 INSERT INTO Acronyms(id,acronym) VALUES(61394,'פרוש המשניות להרמבם בב');
 INSERT INTO Acronyms(id,acronym) VALUES(61395,'פרוש המשניות להרמבם עבודה זרה');
 INSERT INTO Acronyms(id,acronym) VALUES(61396,'פרוש המשניות להרמבם עז');
+INSERT INTO Acronyms(id,acronym) VALUES(61397,'אהל משה');
+INSERT INTO Acronyms(id,acronym) VALUES(61398,'אהל משה (הורוביץ) חלק א');
+INSERT INTO Acronyms(id,acronym) VALUES(61399,'שות אהל משה');
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(2,1,2);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(5,2,5);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(8,2,8);
@@ -88954,4 +88960,7 @@ INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(64648,7641,26850);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(64649,7642,55048);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(64650,7642,46546);
 INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(64651,7642,55050);
+INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(64652,7643,61398);
+INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(64653,7644,61397);
+INSERT INTO BookAcronyms(id,book_id,acronym_id) VALUES(64654,7645,61399);
 COMMIT;
